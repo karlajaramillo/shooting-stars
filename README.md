@@ -11,18 +11,18 @@ There is a chronometer, so the game ends when the time finishes.
 After that, a score is shown in the screen. The score is based on the speed of the star that was clicked.
 
 ## MVP
-# Before start
+### Before start
 —> The user can type their name before starting the game.
 —> The user can read the instructions of the game before start.
 —> The user can start the game with the start button. 
 
-# During the game
+### During the game
 —> During the game, shooting stars appear in the screen randomly from one side of the screen.
 —> The user has to click on the stars to increase their score.
 —> The user can check their score updated.
 —> The user can check the time left.
 
-# When the game finishes
+### When the game finishes
 —> The user can see a board with the final score.
 —> The user have a button to start the game again.
 -> Increasing difficulty and add features.
