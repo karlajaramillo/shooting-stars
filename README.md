@@ -93,8 +93,8 @@ Definition of the different states and their transition (transition functions)
 - star - draw
 - star - move
 - game - addStars
-- user - draw // based on the movement of the click
-- user - move 
+- player - draw // based on the movement of the click
+- player - move 
 - game - checkCatchStar
 - game - score
 - game - GameOver
@@ -102,7 +102,7 @@ Definition of the different states and their transition (transition functions)
 
 
 ## Links
-- [Trello Link](https://trello.com)
+- [Trello Link](https://trello.com/b/qJvWaLhd/shooting-stars)
 - [Slides Link](http://slides.com)
 - [Github repository Link](https://github.com/karlajaramillo/shooting-stars)
 - [Deployment Link](http://github.com)
