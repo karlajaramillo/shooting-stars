@@ -28,6 +28,7 @@ After that, a score is shown in the screen. The score is based on the speed of t
 -> Increasing difficulty and add features.
 
 ## Backlog
+-> Add images to the stars, instead of circles.
 —> Add music during the game.
 -> Add effects when the user catches a star.
 -> Let the user choose the place or background where the user start the game.
