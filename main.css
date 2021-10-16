@@ -1,0 +1,169 @@
+/* ---- reset ---- */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+	padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Set core body defaults */
+body {
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+	list-style: none;
+}
+/* Make images easier to work with */
+img {
+	max-width: 100%;
+	display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+	margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Variables for colors */
+ :root {
+  --dark-blue: #06365f;
+  --light-blue: #719ece;
+  --dark-grey: rgb(110 107 107);
+  --red: #d74c4c;
+  --white: #fff;
+} 
+
+/* Set core body defaults */
+body {
+  font: 200 16px/1.5 "Lato", Helvetica, Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+  background-image: url("");
+  background-color: var(--dark-blue);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.wrapper-container {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: var(--white);
+  text-shadow: 3px 2px hsl(0, 2%, 51%);
+  font-size: 40px;
+  text-transform: uppercase;
+  font-family: "Wallpoet", cursive;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.section-start h2 {
+  margin-bottom: 50px;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 1.3;
+  padding: 1rem 0;
+  font-family: "Jura", sans-serif;
+}
+
+.section-start {
+  margin: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.start-game {
+  border: 0;
+  padding: 20px 40px;
+  margin: 20px 0;
+  border-radius: 5px;
+  background: var(--red);
+  color: white;
+  font-size: 2rem;
+  font-family: "Jura", sans-serif;
+}
+
+.section-start input {
+  border: 0;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+
+.section-start input:focus { 
+  outline: none;
+  border-color: var(--light-blue);
+  box-shadow: 0px 0px 10px var(--light-blue);
+}
+
+footer, footer a{
+  color: var(--dark-grey);
+}
+  
+@media (min-width: 768px) {
+  .wrapper-container {
+    max-width: 728px;
+    margin: 0 auto;
+  }
+}
+
