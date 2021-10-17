@@ -65,7 +65,7 @@ select {
 
 /* Variables for colors */
  :root {
-  --dark-blue: #06365f;
+  --dark-blue: #122b40;
   --light-blue: #719ece;
   --dark-grey: rgb(110 107 107);
   --red: #d74c4c;
@@ -80,6 +80,44 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Lato", sans-serif;
+}
+
+canvas {
+  background-color: var(--dark-blue);
+}
+
+.leader-board {
+  display: flex;
+  justify-content: space-around;
+  height: 20vh;
+  background: rgb(37,96,152);
+  background: linear-gradient(0deg, rgba(37,96,152,1) 0%, rgba(18,43,64,1) 100%);-gradient: linear-gradient(0deg, rgba(37,96,152,1) 0%, rgba(18,43,64,1) 100%);
+  font-family: "Jura", sans-serif;
+}
+
+.leader-board h2 {
+  font-size: 1.3rem;
+  color: var(--white);
+}
+
+.leader-board h3 {
+  color: #abe1df;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 1.3;
+  padding: 1rem 0;
+  font-family: "Jura", sans-serif;
+}
+.leader-board .timer {
+  color: #73f5f0;
+}
+
+.leader-board .score {
+  color: #ffee5c;
+}
+
+.leader-board .player {
+  color: rgb(223, 152, 59);
 }
 
 p {

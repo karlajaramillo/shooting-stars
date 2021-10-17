@@ -24,13 +24,15 @@ class Star {
       x: Math.cos(this.angle),
       y: Math.sin(this.angle)
     }
-    
   }
 
   draw () {
     this.ctx.beginPath();
     if (this.type === 'fromLeft') this.ctx.arc(this.x - this.radius, this.y  - this.radius, this.radius, 0, Math.PI * 2, false);
     if (this.type === 'fromRight') this.ctx.arc(this.x + this.radius, this.y - this.radius, this.radius, 0, Math.PI * 2, false); 
+    this.ctx.shadowBlur = 25;
+    //this.ctx.shadowColor =  "#f7ed76"; //yellow
+    this.ctx.shadowColor = "#fdf8cc";
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
   }
@@ -51,16 +53,13 @@ class Star {
     if (this.type === 'fromLeft') {
       if (this.x + this.radius/2 >= this.canvas.width) {
         arrayStars.splice(index, 1);
-        alert('removed!')
         }
       }
       else if (this.type === 'fromRight') {
         if (this.x - this.radius/2 <= 0) {
           arrayStars.splice(index, 1);
-          alert('removed!')
-        }
       }
-    
+    }
   }
 }
 

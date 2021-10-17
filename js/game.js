@@ -1,5 +1,5 @@
 class Game {
-  constructor(canvas) {
+  constructor(canvas, gameOverCallback) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
     //this.player;
@@ -8,7 +8,9 @@ class Game {
     this.frame = 0;
     //this.angle = 0; // to move the stars
     this.score = 0;
-    //this.animationId = 0;
+    this.animationId;
+    this.timer = 60;
+    this.gameOverCallBack = gameOverCallback;
   }
 
   // background available before the animate()
@@ -17,30 +19,31 @@ class Game {
   startAnimateLoop () {
     // creates the player
     // this.player = new this.player(this.canvas);
-     const animate = () => {
+    const animate = () => {
 
-    // creates stars based on every 70 frames
-     if (this.frame % 70 === 0) this.stars.push(new Star(this.canvas));
-     
-    
-    //  handleBackground();
-    // handle obstacles behind the player and gameover
-    this.checkAllCollisions();
-    // if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
-    // 1- set new positions of player, road, obstacles
-    this.updateCanvas();
-    // 2- clear all the canvas between every frame animation
-    this.clearCanvas();
-    // 3- draw
-    this.drawCanvas();
-    //  this.showScore();
-    //  
-    if (!this.isGameOver) {
+      // creates stars based on every 70 frames
+      if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
+        
+      //  handleBackground();
+      // handle obstacles behind the player and gameover
+      this.checkAllCollisions();
+      // if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
+      // 1- set new positions of player, road, obstacles
+      this.updateCanvas();
+      // 2- clear all the canvas between every frame animation
+      this.clearCanvas();
+      // 3- draw
+      this.drawCanvas();
+      //  this.showScore();
+      //  
+      if (this.isGameOver) {
+        this.gameOverCallBack();
+        window.cancelAnimationFrame(this.animationId);
+      } else {
         // call itself to create the animation
-      window.requestAnimationFrame(animate);
-    }
-    //     angle+= 1;
-      this.frame++; //// for every animation, the frames increments
+        this.frame++; //// for every animation, the frames increments
+        window.requestAnimationFrame(animate);
+      }
     }
      window.requestAnimationFrame(animate)
   }
@@ -90,8 +93,19 @@ class Game {
   //   //  this.ctx.fillText(score, 450, 70);
   // }
 
-  gameOverCallback(callback) {
-    //this.onGameOver = callback;
-  }
+  runCountDown () { 
+    const countdownInterval = setInterval(()=> {
+    // run this DOM manipulation to decrement the countdown for the user
+    document.querySelector('.timer').innerHTML = --this.timer;
+    console.log(document.querySelector('.timer'))
+    console.log(this.timer)
+    if (this.timer <= 0) {
+      clearInterval(countdownInterval);
+      this.isGameOver = true;
+      return;
+    }
+  },1000)
+}
+  
 
 }

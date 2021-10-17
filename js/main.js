@@ -39,25 +39,28 @@ function onPageLoad () {
 	renderAt(".container",homeTemplate);
 }
 
+
+function gameOver() {
+  alert('game over');
+}
+
 function buildGameScreen() {
   // get the canvas
   const canvas = document.querySelector('#canvas');
   console.log(`canvas: ${canvas}`)
   canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  canvas.height = innerHeight * .8;
   console.log(`width: ${canvas.width}`)
   console.log(`height: ${canvas.height}`)
 
-  const game = new Game(canvas);
-  //game.gameOverCallback(buildGameOver);
 
+
+  const game = new Game(canvas, gameOver);
+  
   game.startAnimateLoop();
+  game.runCountDown ();
+  
 }
-
-
-
-
-
 
 
 
