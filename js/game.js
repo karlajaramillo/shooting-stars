@@ -73,19 +73,7 @@ class Game {
     //this.player.checkScreen();
 
     this.stars.forEach((star, index) => {
-      // remove stars out of the screen
-      if (star.type === 'fromLeft') {
-        if (star.x + star.radius/2 >= this.canvas.width) {
-          this.stars.splice(index, 1);
-          //console.log('removed!')
-        }
-      }
-      else if (star.type === 'fromRight') {
-        if (star.x - star.radius/2 <= 0) {
-          this.stars.splice(index, 1);
-          //console.log('removed!')
-        }
-      }
+      star.checkScreenCollision(this.stars, index);
     })
 
     // when it has a click on the canvas

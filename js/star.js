@@ -28,7 +28,6 @@ class Star {
   }
 
   draw () {
-    console.log(this.type)
     this.ctx.beginPath();
     if (this.type === 'fromLeft') this.ctx.arc(this.x - this.radius, this.y  - this.radius, this.radius, 0, Math.PI * 2, false);
     if (this.type === 'fromRight') this.ctx.arc(this.x + this.radius, this.y - this.radius, this.radius, 0, Math.PI * 2, false); 
@@ -46,6 +45,22 @@ class Star {
       this.x = this.x - this.speed + this.curve.x;
       this.y = this.y + this.speed + this.curve.y;
     }
+  }
+
+  checkScreenCollision (arrayStars, index){
+    if (this.type === 'fromLeft') {
+      if (this.x + this.radius/2 >= this.canvas.width) {
+        arrayStars.splice(index, 1);
+        alert('removed!')
+        }
+      }
+      else if (this.type === 'fromRight') {
+        if (this.x - this.radius/2 <= 0) {
+          arrayStars.splice(index, 1);
+          alert('removed!')
+        }
+      }
+    
   }
 }
 
