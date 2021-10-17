@@ -7,47 +7,42 @@ class Game {
     this.isGameOver = false;
     this.frame = 0;
     //this.angle = 0; // to move the stars
-    this.hue = 0; // red, green, blue color spectrum with hsl color property
     this.score = 0;
+    //this.animationId = 0;
   }
 
   // background available before the animate()
   // background into canvas
-
-  starAnimatetLoop () {
+  
+  startAnimateLoop () {
     // creates the player
     // this.player = new this.player(this.canvas);
-    // const animate = () => {
+     const animate = () => {
 
-    // creates stars based on frames
-    // if (this.frame % 40 === 0) { // every 40 frames
-    //    this.stars.push(new Star(this.canvas));
-    // }
+    // creates stars based on every 70 frames
+     if (this.frame % 70 === 0) this.stars.push(new Star(this.canvas));
+     
     
     //  handleBackground();
     // handle obstacles behind the player and gameover
-    //  this.checkAllCollisions();
-    //if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
+    this.checkAllCollisions();
+    // if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
     // 1- set new positions of player, road, obstacles
-    //  this.updateCanvas();
+    this.updateCanvas();
     // 2- clear all the canvas between every frame animation
-    //  this.clearCanvas();
+    this.clearCanvas();
     // 3- draw
-    //  this.drawCanvas();
+    this.drawCanvas();
     //  this.showScore();
     //  
-    //   if (!this.isGameOver) {
-          // call itself to create the animation
-    //    window.requestAnimationFrame(loop);
-    //    }
-
+    if (!this.isGameOver) {
+        // call itself to create the animation
+      window.requestAnimationFrame(animate);
+    }
     //     angle+= 1;
-    //     hue++;
-    //     frame++;
-
-    //     window.requestAnimationFrame(animate)
-      
-    // }
+      this.frame++; //// for every animation, the frames increments
+    }
+     window.requestAnimationFrame(animate)
   }
 
  //clear canvas before draw
@@ -60,14 +55,38 @@ class Game {
     this.stars.forEach((star) => {
       star.update();
     });
-    this.player.update();
+    //this.player.update();
   }
+
+   // draw
+   drawCanvas() {
+    this.stars.forEach((star) => { 
+      star.draw();
+    });
+    //this.player.draw();
+  } 
 
   // handle collisions
   
   checkAllCollisions () {
     // check player is inside the canvas
     //this.player.checkScreen();
+
+    this.stars.forEach((star, index) => {
+      // remove stars out of the screen
+      if (star.type === 'fromLeft') {
+        if (star.x + star.radius/2 >= this.canvas.width) {
+          this.stars.splice(index, 1);
+          //console.log('removed!')
+        }
+      }
+      else if (star.type === 'fromRight') {
+        if (star.x - star.radius/2 <= 0) {
+          this.stars.splice(index, 1);
+          //console.log('removed!')
+        }
+      }
+    })
 
     // when it has a click on the canvas
     // check position of the click --> x,y

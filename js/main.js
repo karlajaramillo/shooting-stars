@@ -4,12 +4,13 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 console.log(ctx);
 
-// We need our javascript to wait until the DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
-	onPageLoad();
-  onPageGame();
-	
-});
+window.onload = () => { 
+  onPageLoad();
+  document.querySelector(".start-game").onclick = () => {
+    renderAt(".container","");
+    buildGameScreen();
+  }
+}
 
 function onPageLoad () {
   const homeTemplate = `    
@@ -38,14 +39,29 @@ function onPageLoad () {
 	renderAt(".container",homeTemplate);
 }
 
-function onPageGame() {
-  document.querySelector('.start-game').addEventListener('click', () => {
-    renderAt(".container","");
-  });
+function buildGameScreen() {
+  // get the canvas
+  const canvas = document.querySelector('#canvas');
+  console.log(`canvas: ${canvas}`)
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  console.log(`width: ${canvas.width}`)
+  console.log(`height: ${canvas.height}`)
+
+  const game = new Game(canvas);
+  //game.gameOverCallback(buildGameOver);
+
+  game.startAnimateLoop();
 }
 
 
-// Method to render pages
+
+
+
+
+
+
+// Utility method to render pages
 function renderAt(element, html) {
 	const node = document.querySelector(element);
 	node.innerHTML = html
