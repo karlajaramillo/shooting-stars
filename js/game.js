@@ -13,20 +13,20 @@ class Game {
     this.mouseY = undefined;
     this.clickedCanvas = false;
     this.pointerX = 0;
-  }
+    this.speed = 2; // background
+    this.bgX = 0;  // background
+    this.bgY = 0;  // background
+   }
 
-  // background available before the animate()
-  // background into canvas
   
   startAnimateLoop () {
     // creates the player
     this.player = new Player(this.canvas);
     const animate = () => {
-
       // creates stars based on every 70 frames
       if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
-      //  handleBackground();
       // handle obstacles behind the player and gameover
+    
       this.checkAllCollisions();
       // if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
       // 1- set new positions of player, road, obstacles
@@ -57,8 +57,36 @@ class Game {
     // for each frame set color
   }
 
+ drawBackground () {
+    const img = new Image();
+    img.src = '../images/background-small.png';
+
+    const img2 = new Image();
+    img2.src = '../images/background-small2.png';
+
+    console.log(`x: ${this.bgX}, y:${this.bgY}, speed: ${this.speed}`);
+    console.log(`imgWidth: ${img.width}, canvasWidth:${this.canvas.width}`);
+    this.ctx.shadowBlur = 0;
+    this.ctx.drawImage(img, this.bgX + this.speed, 0, this.canvas.width, this.canvas.height);
+    if (this.speed > 0) {
+      this.ctx.drawImage(img2, this.bgX  - this.canvas.width + this.speed, 0, this.canvas.width, this.canvas.height);
+    }
+
+    // const img = new Image();
+    // img.src = '../images/background.png';
+
+    // this.ctx.drawImage(img, this.bgX, 0, this.canvas.width, this.canvas.height);
+  }
+
+  updateBackground() {
+    this.bgX += this.speed;
+    this.bgX %= this.canvas.width;
+    console.log(this.bgX);
+  }
+
 // update/set positions
   updateCanvas() {
+    this.updateBackground();
     this.stars.forEach((star) => {
       star.update();
     });
@@ -67,6 +95,7 @@ class Game {
 
    // draw
    drawCanvas() {
+    this.drawBackground();
     this.stars.forEach((star) => { 
       star.draw();
     });
@@ -127,8 +156,8 @@ class Game {
       && e.clientY > 0 && e.clientY < this.canvas.height)) return;
     this.clickedCanvas = true;
     // console.log(`click in canvas: ${this.clickedCanvas}`);
-    console.log(e.clientX)
-    console.log(e.clientY)
+    //console.log(e.clientX)
+    //console.log(e.clientY)
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
     // console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
@@ -138,29 +167,26 @@ class Game {
   mobileClicked () {
     this.canvas.addEventListener('touchstart', (e) => {
     //check if inside canvas
-    console.log('hello touch')
     this.eMobile = e.touches[0];
 
     if(!(eMobile.clientX > 0 && eMobile.clientX < this.canvas.width
       && eMobile.clientY > 0 && eMobile.clientY < this.canvas.height)) return;
     this.clickedCanvas = true;
     // console.log(`click in canvas: ${this.clickedCanvas}`);
-    console.log(eMobile.clientX)
-    console.log(eMobile.clientY)
+    //console.log(eMobile.clientX)
+    //console.log(eMobile.clientY)
     this.mouseX = eMobile.clientX;
     this.mouseY = eMobile.clientY;
-    console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
+    //console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
     });
   } 
 
   pointerMove () {
-    
     addEventListener('mousemove', (e) => {
-      console.log(typeof e)
       this.pointerX = e.clientX;
-      console.log(`x: ${this.pointerX}`);
+      //console.log(`x: ${this.pointerX}`);
       this.player.pointerX = this.pointerX;
-      console.log(`x: ${this.player.pointerX}`);
+      //console.log(`x: ${this.player.pointerX}`);
     })
   }
 
@@ -174,5 +200,10 @@ class Game {
       // console.log(`x: ${this.player.pointerX}`);
     })
   }
+
+
+
+
+
 
 }

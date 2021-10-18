@@ -7,12 +7,14 @@ console.log(ctx);
 
 
 
+
 window.onload = () => { 
   onPageLoad();
+  debugger
   // let nameInput = document.querySelector(".name").value;
   // let name = `${nameInput.slice(0,1).toUpperCase()}${nameInput.slice(1)}`;
   // console.log(name);
-
+  console.log(document.querySelector("input.name").value);
   document.querySelector(".start-game").onclick = () => {
     renderAt(".container","");
     buildGameScreen();
@@ -43,6 +45,7 @@ function onPageLoad () {
         </div>
       </footer>
     </div>`
+  
 	renderAt(".container",homeTemplate);
 }
 
@@ -52,14 +55,15 @@ function gameOver() {
 }
 
 function buildGameScreen() {
+  debugger
   // get the canvas
   const leaderboard = document.querySelector('.leader-board');
   leaderboard.style.display = 'flex';
   const canvas = document.querySelector('#canvas');
-  //canvas.style.display = 'block';
+  canvas.style.display = 'block';
   console.log(`canvas: ${canvas}`)
-  canvas.width = innerWidth;
-  canvas.height = innerHeight * .8;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight * .8;
   console.log(`width: ${canvas.width}`)
   console.log(`height: ${canvas.height}`)
 
@@ -77,4 +81,3 @@ function renderAt(element, html) {
 	const node = document.querySelector(element);
 	node.innerHTML = html
 }
-

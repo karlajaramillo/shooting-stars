@@ -5,7 +5,7 @@ class Player {
     this.width = 100;
     this.height = 86;
     this.x = (this.canvas.width - this.width) / 2; // started position
-    this.y = this.canvas.height - 150; // started position
+    this.y = this.canvas.height - 100; // started position
     this.direction = 0;
     this.score = 0;
     this.imgPlayerLeft =  "../images/yoda-left.png";
@@ -14,8 +14,8 @@ class Player {
   }
 
   draw () {
-    console.log(this.x);
-    console.log(this.pointerX)
+    //console.log(this.x);
+    //console.log(this.pointerX)
     if (this.x >= (this.canvas.width - this.width) / 2) {
       let imgRight = new Image(); // create image object
       imgRight.src = this.imgPlayerRight;
@@ -29,7 +29,7 @@ class Player {
   }
 
   update () {
-     console.log(this.pointerX);
+     //console.log(this.pointerX);
      this.x = this.pointerX + this.direction;
   }
 
@@ -38,7 +38,7 @@ class Player {
     if (this.x - this.width  <= 0){
       this.direction = 1; // add 1, so the direction is to right
     } 
-    if (this.x + this.width >= this.canvas.width) { // off to the right
+    if (this.x - this.width >= this.canvas.width) { // off to the right
       this.direction = -1; // to the left of the board
     }
   }

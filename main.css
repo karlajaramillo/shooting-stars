@@ -84,7 +84,7 @@ body {
 
 canvas {
   background-color: var(--dark-blue);
-  /* display: none; */
+  display: none; 
 }
 
 .leader-board {
@@ -136,7 +136,7 @@ a {
 }
 
 .container {
-  background-image: url("");
+  background-image: url("./images/background-small.png");
   background-color: var(--dark-blue);
   background-size: cover;
   background-repeat: no-repeat;
