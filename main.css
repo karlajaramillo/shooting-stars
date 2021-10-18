@@ -76,7 +76,7 @@ select {
 body {
   font: 200 16px/1.5 "Lato", Helvetica, Arial, sans-serif;
   margin: 0;
-  min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: "Lato", sans-serif;
@@ -84,11 +84,13 @@ body {
 
 canvas {
   background-color: var(--dark-blue);
+  /* display: none; */
 }
 
 .leader-board {
-  display: flex;
+  display: none;
   justify-content: space-around;
+  align-items: center;
   height: 20vh;
   background: rgb(37,96,152);
   background: linear-gradient(0deg, rgba(37,96,152,1) 0%, rgba(18,43,64,1) 100%);-gradient: linear-gradient(0deg, rgba(37,96,152,1) 0%, rgba(18,43,64,1) 100%);

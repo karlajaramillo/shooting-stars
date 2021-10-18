@@ -53,8 +53,10 @@ function gameOver() {
 
 function buildGameScreen() {
   // get the canvas
-
+  const leaderboard = document.querySelector('.leader-board');
+  leaderboard.style.display = 'flex';
   const canvas = document.querySelector('#canvas');
+  //canvas.style.display = 'block';
   console.log(`canvas: ${canvas}`)
   canvas.width = innerWidth;
   canvas.height = innerHeight * .8;
@@ -65,7 +67,8 @@ function buildGameScreen() {
   //document.querySelector(".player").textContent = name;
   game.startAnimateLoop();
   game.runCountDown ();
-  game.mouseClicked();
+  game.screenClicked();
+  game.pointerMove();
 }
 
 
