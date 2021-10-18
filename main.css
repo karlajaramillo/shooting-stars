@@ -100,6 +100,11 @@ canvas {
   color: var(--white);
 }
 
+.leader-board > * {
+  text-align: center;
+  width: 33%;
+}
+
 .leader-board h3 {
   color: #abe1df;
   font-weight: bold;

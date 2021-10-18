@@ -9,8 +9,11 @@ class Game {
     //this.angle = 0; // to move the stars
     this.score = 0;
     this.animationId;
-    this.timer = 60;
+    this.timer = 20;
     this.gameOverCallBack = gameOverCallback;
+    this.mouseX = undefined;
+    this.mouseY = undefined;
+    this.clickedCanvas = false;
   }
 
   // background available before the animate()
@@ -23,7 +26,6 @@ class Game {
 
       // creates stars based on every 70 frames
       if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
-        
       //  handleBackground();
       // handle obstacles behind the player and gameover
       this.checkAllCollisions();
@@ -42,6 +44,7 @@ class Game {
       } else {
         // call itself to create the animation
         this.frame++; //// for every animation, the frames increments
+        //this.clickedCanvas = false;
         window.requestAnimationFrame(animate);
       }
     }
@@ -51,6 +54,7 @@ class Game {
  //clear canvas before draw
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    // for each frame set color
   }
 
 // update/set positions
@@ -76,14 +80,20 @@ class Game {
     //this.player.checkScreen();
 
     this.stars.forEach((star, index) => {
-      star.checkScreenCollision(this.stars, index);
+      star.handleScreenCollision(this.stars, index);
     })
+    if(this.clickedCanvas) {
+      this.stars.forEach((star, index) => {
+        if(star.checkIfClickedStar(this.stars, index, this.mouseX, this.mouseY)) {
+          console.log('points now!!!! collision')
+          // this.player.increaseScore();
+          this.stars.splice(index, 1);
+        }
+      });
+          // increase score
+          // showScore
+    }
 
-    // when it has a click on the canvas
-    // check position of the click --> x,y
-    // loop for each star to find if has the same position of the click
-    // increase score
-    // showScore
    }
 
 
@@ -93,11 +103,11 @@ class Game {
   //   //  this.ctx.fillText(score, 450, 70);
   // }
 
+  // Count down function - 60 seconds
   runCountDown () { 
     const countdownInterval = setInterval(()=> {
     // run this DOM manipulation to decrement the countdown for the user
     document.querySelector('.timer').innerHTML = --this.timer;
-    console.log(document.querySelector('.timer'))
     console.log(this.timer)
     if (this.timer <= 0) {
       clearInterval(countdownInterval);
@@ -106,6 +116,21 @@ class Game {
     }
   },1000)
 }
-  
+
+mouseClicked () {
+  this.canvas.addEventListener('click', (e) => {
+    //check if inside canvas
+
+    if(!(e.clientX > 0 && e.clientX < this.canvas.width
+      && e.clientY > 0 && e.clientY < this.canvas.height)) return;
+    this.clickedCanvas = true;
+    // console.log(`click in canvas: ${this.clickedCanvas}`);
+     console.log(e.clientX)
+     console.log(e.clientY)
+     this.mouseX = e.clientX;
+     this.mouseY = e.clientY;
+    // console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
+  })
+}  
 
 }
