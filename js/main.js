@@ -5,29 +5,27 @@ canvas.height = innerHeight;
 console.log(ctx);
 
 
-
-
-
 window.onload = () => { 
   onPageLoad();
-  debugger
-  // let nameInput = document.querySelector(".name").value;
-  // let name = `${nameInput.slice(0,1).toUpperCase()}${nameInput.slice(1)}`;
-  // console.log(name);
-  console.log(document.querySelector("input.name").value);
+  let namePlayer = "";
+  let inputName = document.querySelector(".name");
+  console.log(inputName);
+  inputName.addEventListener("change", () => {
+    namePlayer = inputName.value;
+    namePlayer = `${namePlayer.slice(0,1).toUpperCase()}${namePlayer.slice(1)}`;
+  });
+
   document.querySelector(".start-game").onclick = () => {
     renderAt(".container","");
-    buildGameScreen();
+    buildGameScreen(namePlayer);
   }
 }
 
 function onPageLoad () {
   const homeTemplate = `    
     <div class="wrapper-container">
-      <h1>Welcome to 
-      <br>Shooting stars Game</h1>
+      <h1> Shooting stars Game</h1>
       <section class="section-start">
-        <h2>Start your game with two simple questions</h2>
         <div>
          <input type="text" class="name"placeholder="What's your name?">
         </div>
@@ -47,15 +45,27 @@ function onPageLoad () {
     </div>`
   
 	renderAt(".container",homeTemplate);
+  
+
 }
 
 
 function gameOver() {
-  alert('game over');
+  // const gameDone = `
+  // <div class="game-over">
+  //   <h1 class="final-score">Score:<span>XX</span></h1>
+  //   <button class="restart">Restart</button>
+  // </div>`;
+
+  // const getScore = document.querySelector('.score').textContent;
+  // const mainDOM = document.querySelector('.container');
+  // mainDOM.insertAdjacentHTML('afterbegin', gameDone);
+  // const setScore = document.querySelector('.final-score').textContent = getScore;
+  // const restartButton = document.querySelector('.restart');
+  // restartButton.addEventListener('click', buildGameScreen);
 }
 
-function buildGameScreen() {
-  debugger
+function buildGameScreen(name) {
   // get the canvas
   const leaderboard = document.querySelector('.leader-board');
   leaderboard.style.display = 'flex';
@@ -68,7 +78,10 @@ function buildGameScreen() {
   console.log(`height: ${canvas.height}`)
 
   const game = new Game(canvas, gameOver);
-  //document.querySelector(".player").textContent = name;
+  alert(name)
+  // set the player name
+  name === '' ? document.querySelector(".player").textContent = 'You!'
+              : document.querySelector(".player").textContent = name;
   game.startAnimateLoop();
   game.runCountDown ();
   game.screenClicked();

@@ -26,7 +26,6 @@ class Game {
       // creates stars based on every 70 frames
       if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
       // handle obstacles behind the player and gameover
-    
       this.checkAllCollisions();
       // if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
       // 1- set new positions of player, road, obstacles
@@ -53,8 +52,8 @@ class Game {
 
  //clear canvas before draw
   clearCanvas() {
+    this.ctx.globalCompositeOperation = "source-over";
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    // for each frame set color
   }
 
  drawBackground () {

@@ -120,7 +120,7 @@ canvas {
 }
 
 .leader-board .score {
-  color: #ffee5c;
+  color: #f7e22f;
 }
 
 .leader-board .player {
@@ -207,6 +207,26 @@ h1 {
 }
 footer, footer a{
   color: var(--dark-grey);
+}
+
+.game-over {
+  width: 50%;
+  height: 20%;
+  top: 100px;
+  right: 30%;
+  text-align: center;
+  position: absolute;
+  background-color: #00bcd4a6;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.game-over h2 { 
+  font-size: 1rem;
+}
+
+.game-over span { 
+  color: #f7e22f;
 }
   
 @media (min-width: 768px) {

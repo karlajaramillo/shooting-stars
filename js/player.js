@@ -30,15 +30,20 @@ class Player {
 
   update () {
      //console.log(this.pointerX);
-     this.x = this.pointerX + this.direction;
+     this.x = this.pointerX - this.width + this.direction;
+     console.log(`x: ${this.x}`)
+     console.log(`pointer: ${this.pointerX}`)
+     console.log(`width: ${this.width}`)
   }
 
   checkScreen () { 
     // if passes left screen
+    console.log(`Check screen x: ${this.x}`)
     if (this.x - this.width  <= 0){
       this.direction = 1; // add 1, so the direction is to right
-    } 
-    if (this.x - this.width >= this.canvas.width) { // off to the right
+    }  
+     if (this.x + this.width  >= this.canvas.width) { // off to the right
+      //console.log(`pointer+direction+width: ${this.pointerX + this.direction + this.width}`) 
       this.direction = -1; // to the left of the board
     }
   }
