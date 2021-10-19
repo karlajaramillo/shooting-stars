@@ -3,11 +3,12 @@ const ctx = canvas.getContext('2d'); // access to canvas
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 console.log(ctx);
+let namePlayer = "";
 
 
 window.onload = () => { 
   onPageLoad();
-  let namePlayer = "";
+  
   let inputName = document.querySelector(".name");
   console.log(inputName);
   inputName.addEventListener("change", () => {
@@ -30,7 +31,7 @@ function onPageLoad () {
          <input type="text" class="name"placeholder="What's your name?">
         </div>
       <div class="start-button">
-        <button class="start-game onclick""> Start My Game</button>
+        <button class="start-game onclick""> Start</button>
       </div>
       </section>
       <footer>
@@ -51,18 +52,27 @@ function onPageLoad () {
 
 
 function gameOver() {
-  // const gameDone = `
-  // <div class="game-over">
-  //   <h1 class="final-score">Score:<span>XX</span></h1>
-  //   <button class="restart">Restart</button>
-  // </div>`;
+  const gameDone = `
+  <div class="game-over">
+    <h3 class="final-score">Score <span></span></h3>
+    <button class="restart">Restart</button>
+  </div>`;
 
-  // const getScore = document.querySelector('.score').textContent;
-  // const mainDOM = document.querySelector('.container');
-  // mainDOM.insertAdjacentHTML('afterbegin', gameDone);
-  // const setScore = document.querySelector('.final-score').textContent = getScore;
-  // const restartButton = document.querySelector('.restart');
-  // restartButton.addEventListener('click', buildGameScreen);
+  const getScore = document.querySelector('.score').textContent;
+  const mainDOM = document.querySelector('.container');
+  mainDOM.insertAdjacentHTML('afterbegin', gameDone);
+  document.querySelector('.final-score span').textContent = getScore;
+  const restartButton = document.querySelector('.restart');
+  restartButton.display = 'none';
+  // add 'name' and buildGameScreen after 'restart' button
+  // add another function like buildGameScreen but that starts at the game again
+  //restartButton.addEventListener('click', buildGameScreen);
+
+  restartButton.onclick = () => {
+    // find parent of the modal and display none
+    //restartButton.style.display = 'none';
+    buildGameScreen(namePlayer);
+  }
 }
 
 function buildGameScreen(name) {
@@ -78,7 +88,6 @@ function buildGameScreen(name) {
   console.log(`height: ${canvas.height}`)
 
   const game = new Game(canvas, gameOver);
-  alert(name)
   // set the player name
   name === '' ? document.querySelector(".player").textContent = 'You!'
               : document.querySelector(".player").textContent = name;
