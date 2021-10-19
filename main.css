@@ -211,7 +211,7 @@ h1 {
   margin-top: 20px;
 }
 footer, footer a{
-  color: var(--dark-grey);
+  color: rgb(173 203 225);
 }
 
 .game-over {

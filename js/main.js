@@ -37,10 +37,7 @@ function onPageLoad () {
       <footer>
         <div>
           Credits:
-          <a href="">Picture designed by .....</a>
-          <a href="">Picture designed by .....</a>
-          <a href="">Picture designed by .....</a>
-          <a href="">Picture designed by .....</a>
+          <a href="https://www.freepik.com/vectors/background">Background vector created by brgfx - www.freepik.com</a>
         </div>
       </footer>
     </div>`
@@ -62,15 +59,11 @@ function gameOver() {
   const mainDOM = document.querySelector('.container');
   mainDOM.insertAdjacentHTML('afterbegin', gameDone);
   document.querySelector('.final-score span').textContent = getScore;
-  const restartButton = document.querySelector('.restart');
-  restartButton.display = 'none';
-  // add 'name' and buildGameScreen after 'restart' button
-  // add another function like buildGameScreen but that starts at the game again
-  //restartButton.addEventListener('click', buildGameScreen);
+  const restartButton = document.querySelector('.restart'); 
 
   restartButton.onclick = () => {
-    // find parent of the modal and display none
-    //restartButton.style.display = 'none';
+    // find parent of the modal and remove
+    restartButton.closest('.game-over').remove();
     buildGameScreen(namePlayer);
   }
 }
