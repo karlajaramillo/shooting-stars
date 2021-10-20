@@ -20,7 +20,7 @@ class Game {
     this.starCurrentX = 0;
     this.starCurrentY = 0;
     this.ifCollision = false;
-    this.collisionImg = '../images/boom1.png';
+    this.collisionImg = './images/boom1.png';
     this.color = '#f7e22f';
     this.size = 4;
     this.weightY = 2;
@@ -67,10 +67,12 @@ class Game {
 
  drawBackground () {
     const img = new Image();
-    img.src = '../images/background-small.png';
+    img.src = "./images/background-small.png";
+    // img.src = 'https://github.com/karlajaramillo/shooting-stars/blob/main/images/background-small.png';
 
     const img2 = new Image();
-    img2.src = '../images/background-small2.png';
+    img2.src = "./images/background-small2.png";
+    // img2.src = 'https://github.com/karlajaramillo/shooting-stars/blob/main/images/background-small2.png';
 
     //console.log(`x: ${this.bgX}, y:${this.bgY}, speed: ${this.speed}`);
     //console.log(`imgWidth: ${img.width}, canvasWidth:${this.canvas.width}`);
@@ -81,7 +83,7 @@ class Game {
     }
 
     // const img = new Image();
-    // img.src = '../images/background.png';
+    // img.src = './images/background.png';
 
     // this.ctx.drawImage(img, this.bgX, 0, this.canvas.width, this.canvas.height);
   }

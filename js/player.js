@@ -8,8 +8,10 @@ class Player {
     this.y = this.canvas.height - 100; // started position
     this.direction = 0;
     this.score = 0;
-    this.imgPlayerLeft =  "../images/yoda-left.png";
-    this.imgPlayerRight =  "../images/yoda-right.png";
+    this.imgPlayerLeft =  "./images/yoda-left.png";
+    // this.imgPlayerLeft =  "https://github.com/karlajaramillo/shooting-stars/blob/main/images/yoda-left.png";
+    this.imgPlayerRight =  "./images/yoda-right.png";
+    // this.imgPlayerRight =  "https://github.com/karlajaramillo/shooting-stars/blob/main/images/yoda-left.png";
     this.pointerX = 0;
   }
 

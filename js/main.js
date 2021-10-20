@@ -4,9 +4,12 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 let namePlayer = "";
 
-const startSound = new Audio('../audio/audio-game.mp3');
-const gameOverSound = new Audio('../audio/game-over.wav');
-const scoreSound = new Audio('../audio/score.wav');
+const startSound = new Audio("./audio/audio-game.mp3");
+const gameOverSound = new Audio("./audio/game-over.mp3");
+const scoreSound = new Audio("./audio/score.mp3");
+// const startSound = new Audio('https://github.com/karlajaramillo/shooting-stars/blob/main/audio/audio-game.mp3');
+// const gameOverSound = new Audio('https://github.com/karlajaramillo/shooting-stars/blob/main/audio/game-over.mp3');
+// const scoreSound = new Audio('https://github.com/karlajaramillo/shooting-stars/blob/main/audio/score.mp3');
 
 window.onload = () => { 
   onPageLoad();
@@ -53,7 +56,7 @@ function getImgBoom (x, y) {
   //console.log('boom ' + x + ' ' + y)
 
   const boom = new Image();
-  boom.src =  '../images/boom1.png';
+  boom.src =  "./images/boom1.png";
   //console.log(boom.src)
   //console.log('boom ' + x + ' ' + y)
     //alert(ctx)
@@ -62,12 +65,18 @@ function getImgBoom (x, y) {
 
 
 function gameOver() {
-  const gameDone = `
+   const gameDone = `
   <div class="game-over">
-    <div><img src="../images/trophy.png" alt=""></div>
+    <div><img src="./images/trophy.png" alt="tropy"></div>
     <h3 class="final-score">Score <span></span></h3>
     <button class="restart">Restart</button>
   </div>`;
+  // const gameDone = `
+  // <div class="game-over">
+  //   <div><img src="https://github.com/karlajaramillo/shooting-stars/blob/main/images/trophy.png" alt=""></div>
+  //   <h3 class="final-score">Score <span></span></h3>
+  //   <button class="restart">Restart</button>
+  // </div>`;
 
   const getScore = document.querySelector('.score').textContent;
   const mainDOM = document.querySelector('.container');
