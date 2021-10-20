@@ -4,6 +4,7 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.player;
     this.stars = [];
+    this.particles = []; // after collision
     this.isGameOver = false;
     this.frame = 0;
     this.animationId;
@@ -91,22 +92,18 @@ class Game {
   }
 
   drawCollision () {
-    
     this.ctx.fillStyle = this.color;
     this.ctx.beginPath();
- 
     this.ctx.arc(this.testx, this.testy, this.size, 0, Math.PI * 2);
     this.ctx.fill();
    }
 
-   updateCollision () {
+  updateCollision () {
     // this.starCurrentX += this.weightX;
     // this.starCurrentY += this.weightY;
     this.testx += this.weightX;
     this.testy += this.weightY;
-
-   }
-
+  }
 
   updateBackground() {
     this.bgX += this.speed;
@@ -121,6 +118,9 @@ class Game {
     this.stars.forEach((star) => {
       star.update();
     });
+    this.particles.forEach(particle => {
+      particle.update();
+    });
     this.player.update();
   }
 
@@ -131,6 +131,9 @@ class Game {
     this.stars.forEach((star) => { 
       star.draw();
     });
+    this.particles.forEach(particle => {
+      particle.draw();
+    })
     this.player.draw();
   } 
 
@@ -142,24 +145,22 @@ class Game {
 
     this.stars.forEach((star, index) => {
       star.handleScreenCollision(this.stars, index);
-    })
+    });
+    
     if(this.clickedCanvas) {
       this.stars.forEach((star, index) => {
         if(star.checkIfClickedStar(this.stars, index, this.mouseX, this.mouseY)) {
-          // show image
-//           let boom = new Image();
-//           console.log(star.x, star.y)
-//           console.log(boom)
-//           boom.src = '../images/boom.png';
-// debugger
-//           boom.onload = () => {
-//             console.log(boom)
-//             this.ctx.drawImage(boom, star.x, star.y);
-//           }
           this.starCurrentX = star.x;
           this.starCurrentY = star.y;
           this.ifCollision = true;
-          this.imgBoom(this.starCurrentX, this.starCurrentY);
+
+          // draw particles
+          console.log(star.x, star.y, star.color)
+           for (let i = 0; i < 8; i ++) {
+          //   // create 8 directions
+            this.particles.push(new Particle(this.canvas, star.x, star.y, star.color))
+          }
+          //this.imgBoom(this.starCurrentX, this.starCurrentY);
           console.log(this.starCurrentX, this.starCurrentY);
           this.showImgScore();
           this.player.increaseScore(star);

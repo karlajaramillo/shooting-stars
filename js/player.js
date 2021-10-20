@@ -43,7 +43,8 @@ class Player {
   checkScreen () { 
     // if passes left screen
     //console.log(`Check screen x: ${this.x}`)
-    if (this.x - this.width  <= 0){
+    if (
+      this.x + this.width  <= 0){
       this.direction = 1; // add 1, so the direction is to right
     }  
      if (this.x + this.width  >= this.canvas.width) { // off to the right

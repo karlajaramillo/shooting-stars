@@ -98,6 +98,7 @@ function buildGameScreen(name) {
 
   const game = new Game(canvas, gameOver, getImgBoom, gainScore);
 
+
   //const game = new Game(canvas, gameOver); // without image
   // set the player name
   name === '' ? document.querySelector(".player").textContent = 'You!'
