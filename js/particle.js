@@ -4,10 +4,11 @@ class Particle {
     this.ctx = this.canvas.getContext("2d");
     this.x = x; //position of the star
     this.y = y; // position of the star
-    this.radius = 3; // radius of the star
+    this.radius = 2; // radius of the star
     this.color = color; // color of the star
     this.velocityX = Math.random() - 1; //from -1 to 1 (1 not included) - random for each of particle
     this.velocityY = Math.random() - 1; //random for each of particle
+    this.counter = 0;
   }
   
   draw () { 
@@ -22,5 +23,13 @@ class Particle {
   update () { 
     this.x = this.x + this.velocityX;
     this.y = this.y + this.velocityY;
+    this.counter +=1;
   } 
+
+  handleParticles (arrParticles, index) {
+    //console.log(this.counter);
+    if(this.counter > 60) {
+      arrParticles.splice(index, 1)
+    }
+  }
 }

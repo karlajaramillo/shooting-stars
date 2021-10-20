@@ -36,7 +36,7 @@ class Game {
     // creates the player
     this.player = new Player(this.canvas);
     const animate = () => {
-      // creates stars based on every 70 frames
+      // creates stars based on every 80 frames
       if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
       // handle obstacles behind the player and gameover
       this.checkAllCollisions();
@@ -113,27 +113,31 @@ class Game {
 // update/set positions
   updateCanvas() {
     this.updateBackground();
-    if(this.ifCollision) this.updateCollision(); // if collision, drawCollision
+    //if(this.ifCollision) this.updateCollision(); // if collision, drawCollision
 
     this.stars.forEach((star) => {
       star.update();
     });
-    this.particles.forEach(particle => {
-      particle.update();
-    });
+    if(this.ifCollision) {
+      this.particles.forEach(particle => {
+        particle.update();
+      });
+    }
     this.player.update();
   }
 
    // draw
    drawCanvas() {
     this.drawBackground();
-    if(this.ifCollision) this.drawCollision(); // if collision, drawCollision
+    //if(this.ifCollision) this.drawCollision(); // if collision, drawCollision
     this.stars.forEach((star) => { 
       star.draw();
     });
-    this.particles.forEach(particle => {
-      particle.draw();
-    })
+    if(this.ifCollision)  {
+      this.particles.forEach(particle => {
+        particle.draw();
+      });
+    }
     this.player.draw();
   } 
 
@@ -145,6 +149,10 @@ class Game {
 
     this.stars.forEach((star, index) => {
       star.handleScreenCollision(this.stars, index);
+    });
+
+    this.particles.forEach((particle, index) => {
+      particle.handleParticles(this.particles, index)
     });
     
     if(this.clickedCanvas) {
