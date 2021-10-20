@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/battlestar');
+/* @import url('http://fonts.cdnfonts.com/css/battlestar'); */
 /* ---- reset ---- */
 /* Box sizing rules */
 *,
@@ -188,8 +188,8 @@ h1 {
   text-shadow: 3px 2px hsl(197deg 25% 35%);
   font-size: 40px;
   text-transform: uppercase;
-  /* font-family: "Wallpoet", cursive; */
-  font-family: 'Battlestar', arial;
+  font-family: "Wallpoet", cursive;
+  /* font-family: 'Battlestar', arial; */
   padding: 0 2rem;
   text-align: center;
 }
