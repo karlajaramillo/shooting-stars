@@ -4,6 +4,9 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 let namePlayer = "";
 
+const startSound = new Audio('../audio/audio-game.mp3');
+const gameOverSound = new Audio('../audio/game-over.wav');
+const scoreSound = new Audio('../audio/score.wav');
 
 window.onload = () => { 
   onPageLoad();
@@ -17,6 +20,7 @@ window.onload = () => {
   document.querySelector(".start-game").onclick = () => {
     renderAt(".container","");
     buildGameScreen(namePlayer);
+    startSound.play();
   }
 }
 
@@ -34,8 +38,9 @@ function onPageLoad () {
       </section>
       <footer>
         <div>
-          Credits:
-          <a href="https://www.freepik.com/vectors/background">Background vector created by brgfx - www.freepik.com</a>
+        Credits: <a href="https://www.freepik.com/vectors/background">Background vector created by brgfx - www.freepik.com</a>
+        <br>
+        <a href="https://mixkit.co/">Sound effects created by mixkit.co</a>
         </div>
       </footer>
     </div>`
@@ -59,6 +64,7 @@ function getImgBoom (x, y) {
 function gameOver() {
   const gameDone = `
   <div class="game-over">
+    <div><img src="../images/trophy.png" alt=""></div>
     <h3 class="final-score">Score <span></span></h3>
     <button class="restart">Restart</button>
   </div>`;
@@ -68,17 +74,21 @@ function gameOver() {
   mainDOM.insertAdjacentHTML('afterbegin', gameDone);
   document.querySelector('.final-score span').textContent = getScore;
   const restartButton = document.querySelector('.restart'); 
+  gameOverSound.play();
+  startSound.pause();
 
   restartButton.onclick = () => {
     // find parent of the modal and remove
     restartButton.closest('.game-over').remove();
     buildGameScreen(namePlayer);
+    startSound.play();
   }
 }
 
 function gainScore() {
   const el = document.querySelector('.wrapper-gain-score img');
     el.style.display = 'block';
+    scoreSound.play();
 }
 
 function buildGameScreen(name) {
@@ -91,11 +101,8 @@ function buildGameScreen(name) {
   canvas.style.display = 'block';
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight * .8;
-  console.log(`width: ${canvas.width}`)
-  console.log(`height: ${canvas.height}`)
 
   const game = new Game(canvas, gameOver, getImgBoom, gainScore);
-
 
   //const game = new Game(canvas, gameOver); // without image
   // set the player name

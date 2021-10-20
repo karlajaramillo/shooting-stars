@@ -33,11 +33,12 @@ class Star {
     this.ctx.beginPath();
     if (this.type === 'fromLeft') this.ctx.arc(this.x - this.radius, this.y  - this.radius, this.radius, 0, Math.PI * 2, false);
     if (this.type === 'fromRight') this.ctx.arc(this.x + this.radius, this.y - this.radius, this.radius, 0, Math.PI * 2, false); 
-    this.ctx.shadowBlur = 30;
+    this.ctx.shadowBlur = 25;
     //this.ctx.shadowColor =  "#f7ed76" //yellow, "#fdf8cc"// white
-    //this.ctx.shadowColor = 'rgba(117, 245, 241, .8)';
     //this.ctx.shadowColor = '#ffc107';
-    this.ctx.shadowColor = this.color;
+    //this.ctx.shadowColor = this.color;
+    // this.ctx.shadowColor = '#eeedce'
+    this.ctx.shadowColor = '#f7c049';
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
   }

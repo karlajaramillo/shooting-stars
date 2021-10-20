@@ -31,7 +31,6 @@ class Game {
     this.showImgScore = gainScore;
    }
 
-  
   startAnimateLoop () {
     // creates the player
     this.player = new Player(this.canvas);
@@ -41,28 +40,24 @@ class Game {
       // handle obstacles behind the player and gameover
       this.checkAllCollisions();
       if(this.ifCollision) this.drawCollision(); // if collision, drawCollision
-      // 1- set new positions of player, road, obstacles
+      // 1- set new positions 
       this.updateCanvas();
       // 2- clear all the canvas between every frame animation
       this.clearCanvas();
       // 3- draw
       this.drawCanvas();
       this.showScore();
-      //this.checkAllCollisions();
-      //   check if --> this.checkAllCollisions() <--- here!!!
-      //if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
       if (this.isGameOver) {
         this.gameOverCallBack();
         window.cancelAnimationFrame(this.animationId);
-        // modal to show score and start button --> showModalScore ();
       } else {
         // call itself to create the animation
         this.frame++; //// for every animation, the frames increments
         this.clickedCanvas = false;
-        window.requestAnimationFrame(animate);
+        this.animationId = window.requestAnimationFrame(animate);
       }
     }
-     window.requestAnimationFrame(animate)
+    this.animationId = window.requestAnimationFrame(animate)
   }
 
  //clear canvas before draw
