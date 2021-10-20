@@ -2,7 +2,6 @@ const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d'); // access to canvas
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-console.log(ctx);
 let namePlayer = "";
 
 
@@ -10,7 +9,6 @@ window.onload = () => {
   onPageLoad();
   
   let inputName = document.querySelector(".name");
-  console.log(inputName);
   inputName.addEventListener("change", () => {
     namePlayer = inputName.value;
     namePlayer = `${namePlayer.slice(0,1).toUpperCase()}${namePlayer.slice(1)}`;
@@ -20,6 +18,8 @@ window.onload = () => {
     renderAt(".container","");
     buildGameScreen(namePlayer);
   }
+
+
 }
 
 function onPageLoad () {
@@ -43,8 +43,18 @@ function onPageLoad () {
     </div>`
   
 	renderAt(".container",homeTemplate);
-  
+}
 
+function getImgBoom (x, y) {
+  //alert(`${x}, ${y}`)
+  //console.log('boom ' + x + ' ' + y)
+
+  const boom = new Image();
+  boom.src =  '../images/boom1.png';
+  //console.log(boom.src)
+  //console.log('boom ' + x + ' ' + y)
+    //alert(ctx)
+    ctx.drawImage(boom, x, y, 80, 80);    
 }
 
 
@@ -68,19 +78,27 @@ function gameOver() {
   }
 }
 
+function gainScore() {
+  const el = document.querySelector('.wrapper-gain-score img');
+    el.style.display = 'block';
+}
+
 function buildGameScreen(name) {
   // get the canvas
+  const el = document.querySelector('.wrapper-gain-score img');
+  el.style.display = 'none';
   const leaderboard = document.querySelector('.leader-board');
   leaderboard.style.display = 'flex';
   const canvas = document.querySelector('#canvas');
   canvas.style.display = 'block';
-  console.log(`canvas: ${canvas}`)
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight * .8;
   console.log(`width: ${canvas.width}`)
   console.log(`height: ${canvas.height}`)
 
-  const game = new Game(canvas, gameOver);
+  const game = new Game(canvas, gameOver, getImgBoom, gainScore);
+
+  //const game = new Game(canvas, gameOver); // without image
   // set the player name
   name === '' ? document.querySelector(".player").textContent = 'You!'
               : document.querySelector(".player").textContent = name;

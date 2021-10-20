@@ -1,5 +1,5 @@
 class Game {
-  constructor(canvas, gameOverCallback) {
+  constructor(canvas, gameOverCallback, getImgBoom, gainScore) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
     this.player;
@@ -13,9 +13,21 @@ class Game {
     this.mouseY = undefined;
     this.clickedCanvas = false;
     this.pointerX = 0;
-    this.speed = 2; // background
+    this.speed = .25; // background
     this.bgX = 0;  // background
     this.bgY = 0;  // background
+    this.starCurrentX = 0;
+    this.starCurrentY = 0;
+    this.ifCollision = false;
+    this.collisionImg = '../images/boom1.png';
+    this.color = '#f7e22f';
+    this.size = 4;
+    this.weightY = 2;
+    this.weightX =1 ;
+    this.testx = 100;
+    this.testy = 100;
+    this.imgBoom = getImgBoom;
+    this.showImgScore = gainScore;
    }
 
   
@@ -27,7 +39,7 @@ class Game {
       if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
       // handle obstacles behind the player and gameover
       this.checkAllCollisions();
-      // if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
+      if(this.ifCollision) this.drawCollision(); // if collision, drawCollision
       // 1- set new positions of player, road, obstacles
       this.updateCanvas();
       // 2- clear all the canvas between every frame animation
@@ -35,7 +47,9 @@ class Game {
       // 3- draw
       this.drawCanvas();
       this.showScore();
-      //  
+      //this.checkAllCollisions();
+      //   check if --> this.checkAllCollisions() <--- here!!!
+      //if(this.checkAllCollisions()) return; // prevent request call for the next animation frame, and it will stop. if handle collision is true -> return
       if (this.isGameOver) {
         this.gameOverCallBack();
         window.cancelAnimationFrame(this.animationId);
@@ -52,7 +66,6 @@ class Game {
 
  //clear canvas before draw
   clearCanvas() {
-    this.ctx.globalCompositeOperation = "source-over";
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
@@ -63,10 +76,10 @@ class Game {
     const img2 = new Image();
     img2.src = '../images/background-small2.png';
 
-    console.log(`x: ${this.bgX}, y:${this.bgY}, speed: ${this.speed}`);
-    console.log(`imgWidth: ${img.width}, canvasWidth:${this.canvas.width}`);
+    //console.log(`x: ${this.bgX}, y:${this.bgY}, speed: ${this.speed}`);
+    //console.log(`imgWidth: ${img.width}, canvasWidth:${this.canvas.width}`);
     this.ctx.shadowBlur = 0;
-    this.ctx.drawImage(img, this.bgX + this.speed, 0, this.canvas.width, this.canvas.height);
+    this.ctx.drawImage(img, this.bgX, 0, this.canvas.width, this.canvas.height);
     if (this.speed > 0) {
       this.ctx.drawImage(img2, this.bgX  - this.canvas.width + this.speed, 0, this.canvas.width, this.canvas.height);
     }
@@ -77,15 +90,34 @@ class Game {
     // this.ctx.drawImage(img, this.bgX, 0, this.canvas.width, this.canvas.height);
   }
 
+  drawCollision () {
+    
+    this.ctx.fillStyle = this.color;
+    this.ctx.beginPath();
+ 
+    this.ctx.arc(this.testx, this.testy, this.size, 0, Math.PI * 2);
+    this.ctx.fill();
+   }
+
+   updateCollision () {
+    // this.starCurrentX += this.weightX;
+    // this.starCurrentY += this.weightY;
+    this.testx += this.weightX;
+    this.testy += this.weightY;
+
+   }
+
+
   updateBackground() {
     this.bgX += this.speed;
     this.bgX %= this.canvas.width;
-    console.log(this.bgX);
   }
 
 // update/set positions
   updateCanvas() {
     this.updateBackground();
+    if(this.ifCollision) this.updateCollision(); // if collision, drawCollision
+
     this.stars.forEach((star) => {
       star.update();
     });
@@ -95,6 +127,7 @@ class Game {
    // draw
    drawCanvas() {
     this.drawBackground();
+    if(this.ifCollision) this.drawCollision(); // if collision, drawCollision
     this.stars.forEach((star) => { 
       star.draw();
     });
@@ -113,12 +146,28 @@ class Game {
     if(this.clickedCanvas) {
       this.stars.forEach((star, index) => {
         if(star.checkIfClickedStar(this.stars, index, this.mouseX, this.mouseY)) {
-          console.log('points now!!!! collision')
+          // show image
+//           let boom = new Image();
+//           console.log(star.x, star.y)
+//           console.log(boom)
+//           boom.src = '../images/boom.png';
+// debugger
+//           boom.onload = () => {
+//             console.log(boom)
+//             this.ctx.drawImage(boom, star.x, star.y);
+//           }
+          this.starCurrentX = star.x;
+          this.starCurrentY = star.y;
+          this.ifCollision = true;
+          this.imgBoom(this.starCurrentX, this.starCurrentY);
+          console.log(this.starCurrentX, this.starCurrentY);
+          this.showImgScore();
           this.player.increaseScore(star);
           this.stars.splice(index, 1);
+
+          return true; // to see from outside if the collision occurs
         }
       });
-        //this.showScore();
     }
    }
 
@@ -126,12 +175,6 @@ class Game {
      const scoreContainer = document.querySelector('.score');
      scoreContainer.textContent = this.player.score;
    }
-
-   // after cancel animation
-  // showModalScore () {
-  //   // show score
-  //   // show start button
-  // }
 
   // Count down function - 60 seconds
   runCountDown () { 

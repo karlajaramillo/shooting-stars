@@ -3,22 +3,22 @@ class Star {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.type = '';
-    this.addSize = 20;
+    this.addSize = 10;
     if (Math.random() < 0.5) {
       this.type = 'fromRight';
       this.x = this.canvas.width;
       this.y = Math.floor(Math.random() * (this.canvas.height * .35)); 
       this.radius = Math.floor(Math.random() * (35 - 10) + 10);  
-      this.speed = 0 // to test
-      //this.speed = Math.floor(Math.random() * 5);
+      //this.speed = 0 // to test
+      this.speed = Math.floor(Math.random());
 
     } else {
       this.type = 'fromLeft';
       this.x = 0;
       this.y = Math.floor(Math.random() * (this.canvas.height * .35));
       this.radius = Math.floor(Math.random() * (30 - 5) + 5);
-      this.speed = 0; // to test
-      //this.speed = Math.floor(Math.random() * 5);
+      //this.speed = 0; // to test
+      this.speed = Math.floor(Math.random());
     }
     this.color = `hsl(${Math.random() * 360}, 50%, 50%)`
     this.angle = Math.atan2(this.canvas.height / 2 - this.y, this.canvas.width / 2 - this.x)
@@ -36,14 +36,14 @@ class Star {
     this.ctx.shadowBlur = 30;
     //this.ctx.shadowColor =  "#f7ed76" //yellow, "#fdf8cc"// white
     //this.ctx.shadowColor = 'rgba(117, 245, 241, .8)';
-    this.ctx.shadowColor = '#ffc107';
+    //this.ctx.shadowColor = '#ffc107';
+    this.ctx.shadowColor = this.color;
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
-    this.ctx.closePath();
   }
 
   update () {
-    //this.speed += 0.02; // to test
+    //this.speed += 0.01; // to test
     if (this.type === 'fromLeft') {
       this.x = this.x + this.speed + this.curve.x;
       this.y = this.y + this.speed + this.curve.y;
