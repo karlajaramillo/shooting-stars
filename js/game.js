@@ -58,7 +58,7 @@ class Game {
       } else {
         // call itself to create the animation
         this.frame++; //// for every animation, the frames increments
-        //this.clickedCanvas = false;
+        this.clickedCanvas = false;
         window.requestAnimationFrame(animate);
       }
     }
@@ -150,7 +150,7 @@ class Game {
     this.stars.forEach((star, index) => {
       star.handleScreenCollision(this.stars, index);
     });
-
+    // remove particles after a number of counts --> counter -> 60
     this.particles.forEach((particle, index) => {
       particle.handleParticles(this.particles, index)
     });
@@ -163,13 +163,13 @@ class Game {
           this.ifCollision = true;
 
           // draw particles
-          console.log(star.x, star.y, star.color)
+          //console.log(star.x, star.y, star.color)
            for (let i = 0; i < 8; i ++) {
           //   // create 8 directions
             this.particles.push(new Particle(this.canvas, star.x, star.y, star.color))
           }
           //this.imgBoom(this.starCurrentX, this.starCurrentY);
-          console.log(this.starCurrentX, this.starCurrentY);
+          //console.log(this.starCurrentX, this.starCurrentY);
           this.showImgScore();
           this.player.increaseScore(star);
           this.stars.splice(index, 1);
@@ -201,8 +201,7 @@ class Game {
   // detect when screenClicked
   screenClicked () {
     this.canvas.addEventListener('click', (e) => {
-    //check if inside canvas
-
+    //check if the click is outside canvas
     if(!(e.clientX > 0 && e.clientX < this.canvas.width
       && e.clientY > 0 && e.clientY < this.canvas.height)) return;
     this.clickedCanvas = true;
@@ -217,18 +216,18 @@ class Game {
 
   mobileClicked () {
     this.canvas.addEventListener('touchstart', (e) => {
-    //check if inside canvas
-    this.eMobile = e.touches[0];
+      //check if inside canvas
+      this.eMobile = e.touches[0];
 
-    if(!(eMobile.clientX > 0 && eMobile.clientX < this.canvas.width
-      && eMobile.clientY > 0 && eMobile.clientY < this.canvas.height)) return;
-    this.clickedCanvas = true;
-    // console.log(`click in canvas: ${this.clickedCanvas}`);
-    //console.log(eMobile.clientX)
-    //console.log(eMobile.clientY)
-    this.mouseX = eMobile.clientX;
-    this.mouseY = eMobile.clientY;
-    //console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
+      if(!(eMobile.clientX > 0 && eMobile.clientX < this.canvas.width
+        && eMobile.clientY > 0 && eMobile.clientY < this.canvas.height)) return;
+      this.clickedCanvas = true;
+      // console.log(`click in canvas: ${this.clickedCanvas}`);
+      //console.log(eMobile.clientX)
+      //console.log(eMobile.clientY)
+      this.mouseX = eMobile.clientX;
+      this.mouseY = eMobile.clientY;
+      console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
     });
   } 
 

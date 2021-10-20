@@ -141,8 +141,22 @@ canvas {
 }
 
 .wrapper-gain-score img {
-  width: 2.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   display: none;
+  position: relative;
+  top: 15%;
+  left: 20%;
+  animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotateX(00deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
 }
 
 /* .hidden {
@@ -273,6 +287,8 @@ footer, footer a{
   font-family: "Jura", sans-serif;
   font-weight: 600;
 }
+
+
   
 @media (min-width: 768px) {
   .wrapper-container {

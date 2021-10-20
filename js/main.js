@@ -18,8 +18,6 @@ window.onload = () => {
     renderAt(".container","");
     buildGameScreen(namePlayer);
   }
-
-
 }
 
 function onPageLoad () {
