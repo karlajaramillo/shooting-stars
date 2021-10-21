@@ -202,7 +202,7 @@ class Game {
     });
     this.canvas.addEventListener('touchstart', (event) => {
       this.handleClickAndTouch(event);
-    });
+    }, {passive: true});
   }
   
   // detect when screenClicked
