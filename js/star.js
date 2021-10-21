@@ -29,6 +29,7 @@ class Star {
     }
   }
 
+  // Draw - star
   draw () {
     this.ctx.beginPath();
     if (this.type === 'fromLeft') this.ctx.arc(this.x - this.radius, this.y  - this.radius, this.radius, 0, Math.PI * 2, false);
@@ -39,6 +40,7 @@ class Star {
     this.ctx.fill();
   }
 
+  // Update position - star
   update () {
     if (this.type === 'fromLeft') {
       this.x = this.x + this.speed + this.curve.x;
@@ -49,19 +51,22 @@ class Star {
       this.y = this.y + this.speed + this.curve.y;
     }
   }
-  //remove stars off the screen
+
+  // Remove stars off the screen
   handleScreenCollision (arrayStars, index) {
-    if (this.type === 'fromLeft') {
+    if (this.type === 'fromLeft') { // go to the right
       if (this.x + this.radius/2 >= this.canvas.width) {
         arrayStars.splice(index, 1);
         }
       }
-      else if (this.type === 'fromRight') {
+      else if (this.type === 'fromRight') { // go to the left
         if (this.x - this.radius/2 <= 0) {
           arrayStars.splice(index, 1);
       }
     }
   }
+
+  // Check collision / shoot star with click or touches
   checkIfClickedStar (arrayStars, index, mouseX, mouseY) {
     this.left = Math.round(this.x - this.radius - this.addSize);
     this.right = Math.round(this.x + this.radius + this.addSize);
@@ -74,8 +79,6 @@ class Star {
       && 
       // vertical
       (mouseY > this.top && mouseY < this.bottom)
-      //console.log(collision);
-      //if (collision) alert('collision')
       if (collision) return collision;
   }
 }

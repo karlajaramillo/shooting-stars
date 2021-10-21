@@ -10,7 +10,7 @@ class Particle {
     this.velocityY = Math.random() - 1; //random for each of particle
     this.counter = 0;
   }
-  
+  // Draw - particle
   draw () { 
     this.ctx.beginPath();
     this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -22,15 +22,14 @@ class Particle {
     this.ctx.fillStyle = '#d7d6bd'; // beige
     this.ctx.fill();
   } 
-
+  // Update - particle
   update () { 
     this.x = this.x + this.velocityX;
     this.y = this.y + this.velocityY;
     this.counter +=1;
   } 
-
+  // Remove particles afeter a counter
   handleParticles (arrParticles, index) {
-    //console.log(this.counter);
     if(this.counter > 100) {
       arrParticles.splice(index, 1)
     }

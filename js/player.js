@@ -9,15 +9,12 @@ class Player {
     this.direction = 0;
     this.score = 0;
     this.imgPlayerLeft =  "./images/yoda-left.png";
-    // this.imgPlayerLeft =  "https://github.com/karlajaramillo/shooting-stars/blob/main/images/yoda-left.png";
     this.imgPlayerRight =  "./images/yoda-right.png";
-    // this.imgPlayerRight =  "https://github.com/karlajaramillo/shooting-stars/blob/main/images/yoda-left.png";
     this.pointerX = 0;
   }
 
+  // Draw - player
   draw () {
-    //console.log(this.x);
-    //console.log(this.pointerX)
     if (this.x >= (this.canvas.width - this.width) / 2) {
       let imgRight = new Image(); // create image object
       this.ctx.shadowBlur = 5;
@@ -34,17 +31,13 @@ class Player {
     }
   }
 
+  // Update - player
   update () {
-     //console.log(this.pointerX);
      this.x = this.pointerX - this.width + this.direction;
-    //  console.log(`x: ${this.x}`)
-    //  console.log(`pointer: ${this.pointerX}`)
-    //  console.log(`width: ${this.width}`)
   }
 
+  // Change direction of player if collide with screen
   checkScreen () { 
-    // if passes left screen
-    //console.log(`Check screen x: ${this.x}`)
     if (
       this.x + this.width  <= 0){
       this.direction = 1; // add 1, so the direction is to right
@@ -55,12 +48,13 @@ class Player {
     }
   }
 
+  // Set direction
   setDirection (direction){
     this.direction = direction;
   }
 
+  // Increase score if a star was shooted - depending on the radius
   increaseScore (star) {
-    //console.log(star.radius);
-    return star.radius < 15 ? this.score += 10 : this.score += 5;
+    return star.radius < 15 ? this.score += 100 : this.score += 50;
   }
 }

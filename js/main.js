@@ -5,16 +5,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let namePlayer = "";
 
-
+// Audio elements - using Howl API for JS
 const startSound = new Audio("./audio/audio-game.mp3");
-// const gameOverSound = new Audio("./audio/game-over.mp3");
-// const scoreSound = new Audio("./audio/score.mp3");
-
-// const startSound = new Audio({ 
-//   src: ["./audio/audio-game.mp3"],
-//   autoplay: true,
-//   loop: true
-// });
 const gameOverSound = new Howl({src: ["./audio/game-over.mp3"]});
 const scoreSound = new Howl({src: ["./audio/score.mp3"]});
 
@@ -50,25 +42,13 @@ function onPageLoad () {
         Credits: <a href="https://www.freepik.com/vectors/background">Background vector created by brgfx - www.freepik.com</a>
         <br>
         <a href="https://mixkit.co/">Sound effects created by mixkit.co</a>
+        <br>
+        <a href="https://www.cufonfonts.com/font/mandalore">Fonts created by Cufonfonts.com</a> 
         </div>
       </footer>
     </div>`
-  
 	renderAt(".container",homeTemplate);
 }
-
-function getImgBoom (x, y) {
-  //alert(`${x}, ${y}`)
-  //console.log('boom ' + x + ' ' + y)
-
-  const boom = new Image();
-  boom.src =  "./images/boom1.png";
-  //console.log(boom.src)
-  //console.log('boom ' + x + ' ' + y)
-    //alert(ctx)
-    ctx.drawImage(boom, x, y, 80, 80);    
-}
-
 
 function gameOver() {
    const gameDone = `
@@ -77,12 +57,6 @@ function gameOver() {
     <h3 class="final-score">Score <span></span></h3>
     <button class="restart">Restart</button>
   </div>`;
-  // const gameDone = `
-  // <div class="game-over">
-  //   <div><img src="https://github.com/karlajaramillo/shooting-stars/blob/main/images/trophy.png" alt=""></div>
-  //   <h3 class="final-score">Score <span></span></h3>
-  //   <button class="restart">Restart</button>
-  // </div>`;
 
   const getScore = document.querySelector('.score').textContent;
   const mainDOM = document.querySelector('.container');
@@ -117,10 +91,9 @@ function buildGameScreen(name) {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight * .8;
 
-  const game = new Game(canvas, gameOver, getImgBoom, gainScore);
+  const game = new Game(canvas, gameOver, gainScore);
 
-  //const game = new Game(canvas, gameOver); // without image
-  // set the player name
+  // Set the player name
   name === '' ? document.querySelector(".player").textContent = 'You!'
               : document.querySelector(".player").textContent = name;
   game.startAnimateLoop();
