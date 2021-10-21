@@ -3,11 +3,11 @@ class Star {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.type = '';
-    this.addSize = 10;
+    this.addSize = 8;
     if (Math.random() < 0.5) {
       this.type = 'fromRight';
       this.x = this.canvas.width;
-      this.y = Math.floor(Math.random() * (this.canvas.height * .35)); 
+      this.y = Math.floor(Math.random() * (this.canvas.height * .6)); 
       this.radius = Math.floor(Math.random() * (35 - 10) + 10);  
       //this.speed = 0 // to test
       this.speed = Math.floor(Math.random());
@@ -15,13 +15,13 @@ class Star {
     } else {
       this.type = 'fromLeft';
       this.x = 0;
-      this.y = Math.floor(Math.random() * (this.canvas.height * .35));
+      this.y = Math.floor(Math.random() * (this.canvas.height * .6));
       this.radius = Math.floor(Math.random() * (30 - 5) + 5);
       //this.speed = 0; // to test
       this.speed = Math.floor(Math.random());
     }
     this.color = `hsl(${Math.random() * 360}, 50%, 50%)`
-    this.angle = Math.atan2(this.canvas.height / 2 - this.y, this.canvas.width / 2 - this.x)
+    this.angle = Math.atan2(this.canvas.height / 2 - this.y, this.canvas.width / 2 - this.x);
 
     this.curve = {
       x: Math.cos(this.angle),

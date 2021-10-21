@@ -10,24 +10,23 @@ const scoreSound = new Audio("./audio/score.mp3");
 
 window.onload = () => { 
   onPageLoad();
-  
   let inputName = document.querySelector(".name");
   inputName.addEventListener("change", () => {
     namePlayer = inputName.value;
     namePlayer = `${namePlayer.slice(0,1).toUpperCase()}${namePlayer.slice(1)}`;
   });
 
-  document.querySelector(".start-game").onclick = () => {
+  document.querySelector(".start-game").addEventListener('click', () => {
     renderAt(".container","");
     buildGameScreen(namePlayer);
     startSound.play();
-  }
+  });
 }
 
 function onPageLoad () {
   const homeTemplate = `    
     <div class="wrapper-container">
-      <h1> Shooting stars Game</h1>
+      <h1> Stars Game</h1>
       <section class="section-start">
         <div>
          <input type="text" class="name"placeholder="What's your name?">
@@ -117,9 +116,7 @@ function buildGameScreen(name) {
   game.startAnimateLoop();
   game.runCountDown ();
   game.bindClickAndTouch();
-  // game.screenClicked();
-  // game.screenTouched();
-  //game.pointerMove();
+  game.pointerMove();
 }
 
 // Utility method to render pages

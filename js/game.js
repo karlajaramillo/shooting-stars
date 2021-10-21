@@ -35,8 +35,8 @@ class Game {
     // creates the player
     this.player = new Player(this.canvas);
     const animate = () => {
-      // creates stars based on every 80 frames
-      if (this.frame % 80 === 0) this.stars.push(new Star(this.canvas));
+      // creates stars based on every 60 frames
+      if (this.frame % 60 === 0) this.stars.push(new Star(this.canvas));
       // handle obstacles behind the player and gameover
       this.checkAllCollisions();
       if(this.ifCollision) this.drawCollision(); // if collision, drawCollision
@@ -230,14 +230,14 @@ class Game {
     }
   }
 
-  // pointerMove () {
-  //   addEventListener('mousemove', (event) => {
-  //     this.pointerX = event.touches[0].clientX;
-  //     //console.log(`x: ${this.pointerX}`);
-  //     this.player.pointerX = this.pointerX;
-  //     //console.log(`x: ${this.player.pointerX}`);
-  //   })
-  // }
+  pointerMove () {
+    addEventListener('mousemove', (e) => {
+      this.pointerX = e.clientX;
+      //console.log(`x: ${this.pointerX}`);
+      this.player.pointerX = this.pointerX;
+      //console.log(`x: ${this.player.pointerX}`);
+    })
+  }
 
   // pointerTouchMove () {
   //   addEventListener('touchmove', (e) => {
