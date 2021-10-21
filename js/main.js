@@ -1,12 +1,22 @@
+
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d'); // access to canvas
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let namePlayer = "";
 
+
 const startSound = new Audio("./audio/audio-game.mp3");
-const gameOverSound = new Audio("./audio/game-over.mp3");
-const scoreSound = new Audio("./audio/score.mp3");
+// const gameOverSound = new Audio("./audio/game-over.mp3");
+// const scoreSound = new Audio("./audio/score.mp3");
+
+// const startSound = new Audio({ 
+//   src: ["./audio/audio-game.mp3"],
+//   autoplay: true,
+//   loop: true
+// });
+const gameOverSound = new Howl({src: ["./audio/game-over.mp3"]});
+const scoreSound = new Howl({src: ["./audio/score.mp3"]});
 
 window.onload = () => { 
   onPageLoad();

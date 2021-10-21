@@ -3,14 +3,14 @@ class Star {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.type = '';
-    this.addSize = 8;
+    this.addSize = 10;
     if (Math.random() < 0.5) {
       this.type = 'fromRight';
       this.x = this.canvas.width;
       this.y = Math.floor(Math.random() * (this.canvas.height * .6)); 
-      this.radius = Math.floor(Math.random() * (35 - 10) + 10);  
+      this.radius = Math.floor(Math.random() * (30 - 10) + 10);  
       //this.speed = 0 // to test
-      this.speed = Math.floor(Math.random());
+      this.speed = Math.floor(Math.random() * 1.5);
 
     } else {
       this.type = 'fromLeft';
@@ -34,17 +34,12 @@ class Star {
     if (this.type === 'fromLeft') this.ctx.arc(this.x - this.radius, this.y  - this.radius, this.radius, 0, Math.PI * 2, false);
     if (this.type === 'fromRight') this.ctx.arc(this.x + this.radius, this.y - this.radius, this.radius, 0, Math.PI * 2, false); 
     this.ctx.shadowBlur = 25;
-    //this.ctx.shadowColor =  "#f7ed76" //yellow, "#fdf8cc"// white
-    //this.ctx.shadowColor = '#ffc107';
-    //this.ctx.shadowColor = this.color;
-    // this.ctx.shadowColor = '#eeedce'
     this.ctx.shadowColor = '#f7c049';
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
   }
 
   update () {
-    //this.speed += 0.01; // to test
     if (this.type === 'fromLeft') {
       this.x = this.x + this.speed + this.curve.x;
       this.y = this.y + this.speed + this.curve.y;
@@ -73,18 +68,6 @@ class Star {
     this.top = Math.round(this.y - this.radius - this.addSize);
     this.bottom = Math.round(this.y + this.radius + this.addSize);
 
-    // console.log(`index: ${index},
-    // coordX: ${this.x},
-    // radius: ${this.radius},
-    // right: ${this.right}
-    // left: ${this.left}
-    // coordY: ${this.y},
-    // top: ${this.top},
-    // bottom: ${this.bottom},
-    // mouseX: ${mouseX},
-    // mouseY: ${mouseY}
-    // `)
-
     const collision = 
       // horizontal
       (mouseX > this.left && mouseX < this.right)
@@ -95,6 +78,4 @@ class Star {
       //if (collision) alert('collision')
       if (collision) return collision;
   }
-
-
 }

@@ -230,29 +230,12 @@ class Game {
     }
   }
 
+  // move player
   pointerMove () {
-    addEventListener('mousemove', (e) => {
-      this.pointerX = e.clientX;
-      //console.log(`x: ${this.pointerX}`);
+    addEventListener('mousemove', (event) => {
+      this.pointerX = event.clientX;
       this.player.pointerX = this.pointerX;
-      //console.log(`x: ${this.player.pointerX}`);
     })
   }
-
-  // pointerTouchMove () {
-  //   addEventListener('touchmove', (e) => {
-
-  //     // this.pointerTouchesX = e.touches[0].clientX;
-  //     // console.log = this.pointerTouchesX
-  //     // console.log(`x: ${this.pointerX}`);
-  //     // this.player.pointerX = this.pointerX;
-  //     // console.log(`x: ${this.player.pointerX}`);
-  //   })
-  // }
-
-
-
-
-
 
 }
