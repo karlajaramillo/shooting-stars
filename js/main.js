@@ -1,15 +1,12 @@
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d'); // access to canvas
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 let namePlayer = "";
 
 const startSound = new Audio("./audio/audio-game.mp3");
 const gameOverSound = new Audio("./audio/game-over.mp3");
 const scoreSound = new Audio("./audio/score.mp3");
-// const startSound = new Audio('https://github.com/karlajaramillo/shooting-stars/blob/main/audio/audio-game.mp3');
-// const gameOverSound = new Audio('https://github.com/karlajaramillo/shooting-stars/blob/main/audio/game-over.mp3');
-// const scoreSound = new Audio('https://github.com/karlajaramillo/shooting-stars/blob/main/audio/score.mp3');
 
 window.onload = () => { 
   onPageLoad();
@@ -119,10 +116,11 @@ function buildGameScreen(name) {
               : document.querySelector(".player").textContent = name;
   game.startAnimateLoop();
   game.runCountDown ();
-  game.screenClicked();
-  game.pointerMove();
+  game.bindClickAndTouch();
+  // game.screenClicked();
+  // game.screenTouched();
+  //game.pointerMove();
 }
-
 
 // Utility method to render pages
 function renderAt(element, html) {

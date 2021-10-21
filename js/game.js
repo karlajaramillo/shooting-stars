@@ -152,7 +152,8 @@ class Game {
       particle.handleParticles(this.particles, index)
     });
     
-    if(this.clickedCanvas) {
+    // check if the canvas was clicked/touched
+    if(this.clickedCanvas) { 
       this.stars.forEach((star, index) => {
         if(star.checkIfClickedStar(this.stars, index, this.mouseX, this.mouseY)) {
           this.starCurrentX = star.x;
@@ -195,58 +196,59 @@ class Game {
     },1000)
   }
 
+  bindClickAndTouch() {
+    this.canvas.addEventListener('click', (event) => { 
+      this.handleClickAndTouch(event);
+    });
+    this.canvas.addEventListener('touchstart', (event) => {
+      this.handleClickAndTouch(event);
+    });
+  }
+  
   // detect when screenClicked
-  screenClicked () {
-    this.canvas.addEventListener('click', (e) => {
-    //check if the click is outside canvas
-    if(!(e.clientX > 0 && e.clientX < this.canvas.width
-      && e.clientY > 0 && e.clientY < this.canvas.height)) return;
-    this.clickedCanvas = true;
-    // console.log(`click in canvas: ${this.clickedCanvas}`);
-    //console.log(e.clientX)
-    //console.log(e.clientY)
-    this.mouseX = e.clientX;
-    this.mouseY = e.clientY;
-    // console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
-    });
-  } 
-
-  mobileClicked () {
-    this.canvas.addEventListener('touchstart', (e) => {
-      //check if inside canvas
-      this.eMobile = e.touches[0];
-
-      if(!(eMobile.clientX > 0 && eMobile.clientX < this.canvas.width
-        && eMobile.clientY > 0 && eMobile.clientY < this.canvas.height)) return;
+  handleClickAndTouch(event) {
+    if (event.type === 'click') {
+      // check if the click is outside the canvas, return
+      if(!(event.clientX > 0 && event.clientX < this.canvas.width
+        && event.clientY > 0 && event.clientY < this.canvas.height)) return;
+      // inside the canvas
+      this.mouseX = event.clientX; // set x position
+      this.mouseY = event.clientY; // set y position
       this.clickedCanvas = true;
-      // console.log(`click in canvas: ${this.clickedCanvas}`);
-      //console.log(eMobile.clientX)
-      //console.log(eMobile.clientY)
-      this.mouseX = eMobile.clientX;
-      this.mouseY = eMobile.clientY;
-      console.log(`mouseX: ${this.mouseX}, mouseY${this.mouseY}`)    
-    });
-  } 
+    }
 
-  pointerMove () {
-    addEventListener('mousemove', (e) => {
-      this.pointerX = e.clientX;
-      //console.log(`x: ${this.pointerX}`);
-      this.player.pointerX = this.pointerX;
-      //console.log(`x: ${this.player.pointerX}`);
-    })
+    if (event.type === 'touchstart') {
+      // in touch events, the x and y are inside event.touches[0] property
+      this.eMobile = event.touches[0]; // event.touches[0].clientX;  event.touches[0].clientY; 
+      // check if the click is outside the canvas, return
+      if(!(this.eMobile.clientX > 0 && this.eMobile.clientX < this.canvas.width
+        && this.eMobile.clientY > 0 && this.eMobile.clientY < this.canvas.height)) return;
+      // inside the canvas
+      this.mouseX = this.eMobile.clientX; // set x position
+      this.mouseY = this.eMobile.clientY; // set y position
+      this.clickedCanvas = true;
+    }
   }
 
-  pointerTouchMove () {
-    addEventListener('touchmove', (e) => {
+  // pointerMove () {
+  //   addEventListener('mousemove', (event) => {
+  //     this.pointerX = event.touches[0].clientX;
+  //     //console.log(`x: ${this.pointerX}`);
+  //     this.player.pointerX = this.pointerX;
+  //     //console.log(`x: ${this.player.pointerX}`);
+  //   })
+  // }
 
-      // this.pointerTouchesX = e.touches[0].clientX;
-      // console.log = this.pointerTouchesX
-      // console.log(`x: ${this.pointerX}`);
-      // this.player.pointerX = this.pointerX;
-      // console.log(`x: ${this.player.pointerX}`);
-    })
-  }
+  // pointerTouchMove () {
+  //   addEventListener('touchmove', (e) => {
+
+  //     // this.pointerTouchesX = e.touches[0].clientX;
+  //     // console.log = this.pointerTouchesX
+  //     // console.log(`x: ${this.pointerX}`);
+  //     // this.player.pointerX = this.pointerX;
+  //     // console.log(`x: ${this.player.pointerX}`);
+  //   })
+  // }
 
 
 
