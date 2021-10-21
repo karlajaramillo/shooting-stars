@@ -36,7 +36,7 @@ window.onload = () => {
 function onPageLoad () {
   const homeTemplate = `    
     <div class="wrapper-container">
-      <h1> Stars Game</h1>
+      <h1> Shooting Stars</h1>
       <section class="section-start">
         <div>
          <input type="text" class="name"placeholder="What's your name?">

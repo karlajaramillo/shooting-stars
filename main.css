@@ -8,7 +8,40 @@
       url('./fonts/Starjedi.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Mandalore Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Mandalore Regular'), url('./fonts/mandalore.woff') format('woff');
+}
+@font-face {
+  font-family: 'Mandalore 3D Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Mandalore 3D Regular'), url('./fonts/mandalore3d.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'Mandalore Rough Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Mandalore Rough Regular'), url('./fonts/mandalorerough.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Mandalore Title Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Mandalore Title Regular'), url('./fonts/mandaloretitle.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Mandalore Expanded Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Mandalore Expanded Regular'), url('./fonts/mandalorexpand.woff') format('woff');
+}
+  
 *,
 *::before,
 *::after {
@@ -197,10 +230,11 @@ h1 {
   color: var(--white);
   /* text-shadow: 3px 2px hsl(0, 2%, 51%); */
   text-shadow: 3px 2px hsl(197deg 25% 35%);
-  font-size: 40px;
+  font-size: 50px;
   text-transform: uppercase;
   /* font-family: "Wallpoet", cursive; */
-  font-family: 'Starjedi';
+  /* font-family: 'Starjedi'; */
+  font-family: 'Mandalore Title Regular';
   padding: 0 2rem;
   text-align: center;
   letter-spacing: 5px;
@@ -232,8 +266,10 @@ h1 {
   background: #e5be4a;
   color: white;
   font-size: 1.5rem;
-  font-family: "Wallpoet", sans-serif;
+  /* font-family: "Wallpoet", sans-serif; */
+  font-family: "Mandalore Regular", sans-serif;
   font-weight: 600;
+  letter-spacing: 1.2px;
 }
 
 .section-start input {
@@ -309,9 +345,10 @@ footer, footer a{
   background: #e05d5d;
   color: white;
   font-size: 1.3rem;
-  /* font-size: 2rem; ipad and more */
-  font-family: "Wallpoet", sans-serif;
+  /* font-family: "Wallpoet", sans-serif; */
+  font-family: "Mandalore Regular", sans-serif;
   font-weight: 600;
+  letter-spacing: 1.2px;
 }
 
 
