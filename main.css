@@ -138,6 +138,11 @@ body {
   height: 100vh;
   width: 100%;
   background-color: var(--dark-blue);
+  background-image: url("./images/background-small.png");
+  background-color: var(--dark-blue);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .wrapper-home {
@@ -161,7 +166,7 @@ body {
 }
 
 canvas {
-  background-color: var(--dark-blue);
+  /* background-color: var(--dark-blue); */
 }
 
 .leader-board {
@@ -388,21 +393,56 @@ footer, footer a{
   }
 }
 /* mobile landscape orientation  */
-@media (min-width: 700px) and (orientation: landscape) {
+@media (min-width: 665px) and (orientation: landscape) {
   .restart {
-    margin: 5px 0;
+    margin: 10px 0 0 0;
     width: 40%;
   }
   .game-over {
     width: 40%;
+    height: 65%;
+    top: 45%;
   }
   .game-over img {
-    width: 40px;
+    width: 30px;
+    margin: 0 0 20px 0;
+  }
+  .restart {
+    font-size: 1.5rem;
   }
   .final-score {
     margin-top: 0;
+    font-size: 1.5rem;
+  }
+  
+  .leader-board h3 {
+    padding-top: .1rem;
+  }
+  .leader-board h2, 
+  .leader-board h3 {
+    font-size: 1.3rem;
   }
 }
+
+@media (min-width: 1000px) and (orientation: landscape) { 
+  .game-over img {
+    margin: 10px 0;
+    width: 80px;
+  }
+  .restart {
+    font-size: 2.5rem;
+    margin: 40px 0 0 0;
+  }
+  .final-score {
+    margin: 10px 0;
+    font-size: 2.5rem;
+  }
+  .leader-board h2, 
+  .leader-board h3 {
+    font-size: 2.5rem;
+  }
+}
+
 
 
 
