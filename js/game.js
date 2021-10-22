@@ -32,6 +32,9 @@ class Game {
     // creates the player
     this.player = new Player(this.canvas);
     const animate = () => {
+      // when the screen is "resize", set new canvas.width and canvas.height to player
+      this.player.y = this.canvas.height - 100;
+      
       // creates stars every 60 frames
       if (this.frame % 60 === 0) this.stars.push(new Star(this.canvas));
       // handle obstacles behind the player and gameover

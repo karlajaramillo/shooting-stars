@@ -5,7 +5,7 @@ class Player {
     this.width = 100;
     this.height = 86;
     this.x = (this.canvas.width - this.width) / 2; // started position
-    this.y = this.canvas.height - 100; // started position
+    this.y = this.canvas.offsetHeight - 100; // started position
     this.direction = 0;
     this.score = 0;
     this.imgPlayerLeft =  "./images/yoda-left.png";

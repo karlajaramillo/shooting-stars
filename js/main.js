@@ -20,6 +20,14 @@ window.onload = () => {
   });
 }
 
+function listenToResize () {
+  window.addEventListener('resize', () => {
+    // Set new width and height based on the screen
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight * .8;
+  })
+}
+
 // Render Home page
 function onPageLoad () {
   const homeTemplate = `    
@@ -106,9 +114,11 @@ function gainScore() {
 
 function buildGameScreen(name) {
   onPageGame ();
-
+  listenToResize(); // listen for resizing screen
   const canvas = document.querySelector('#canvas');
   const ctx = canvas.getContext('2d'); // access to canvas
+
+  
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight * .8;
 
