@@ -1,8 +1,3 @@
-
-const canvas = document.querySelector('#canvas');
-const ctx = canvas.getContext('2d'); // access to canvas
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 let namePlayer = "";
 
 // Audio elements - using Howl API for JS
@@ -25,9 +20,10 @@ window.onload = () => {
   });
 }
 
+// Render Home page
 function onPageLoad () {
   const homeTemplate = `    
-    <div class="wrapper-container">
+    <div class="wrapper-home">
       <h1> Shooting Stars</h1>
       <section class="section-start">
         <div>
@@ -50,13 +46,40 @@ function onPageLoad () {
 	renderAt(".container",homeTemplate);
 }
 
+// Render Game page
+function onPageGame () {
+  const gameTemplate = `  
+    <div class="wrapper-game">  
+      <canvas id="canvas"></canvas>
+      <div class="leader-board">
+        <div>
+          <h2 class="player-title">Player</h2>
+          <h3 class="player"></h3>
+        </div>
+        <div>
+          <div class="wrapper-gain-score">
+            <h2 class="score-title">Score</h2>
+            <div><img src="./images/coin.png" alt=""></div>
+          </div>
+          <h3 class="score">0</h3>
+        </div>
+        <div>
+          <h2 class="time-title">Time</h2>
+          <h3 class="timer">60</h3>
+        </div>
+      </div>
+    </div>`;
+  renderAt(".container", gameTemplate);
+} 
+
+// Render game over modal
 function gameOver() {
    const gameDone = `
-  <div class="game-over">
-    <div><img src="./images/trophy.png" alt="tropy"></div>
-    <h3 class="final-score">Score <span></span></h3>
-    <button class="restart">Restart</button>
-  </div>`;
+    <div class="game-over">
+      <div><img src="./images/trophy.png" alt="tropy"></div>
+      <h3 class="final-score">Score <span></span></h3>
+      <button class="restart">Restart</button>
+    </div>`;
 
   const getScore = document.querySelector('.score').textContent;
   const mainDOM = document.querySelector('.container');
@@ -74,6 +97,7 @@ function gameOver() {
   }
 }
 
+// Add a coin and sound when user scores
 function gainScore() {
   const el = document.querySelector('.wrapper-gain-score img');
     el.style.display = 'block';
@@ -81,16 +105,14 @@ function gainScore() {
 }
 
 function buildGameScreen(name) {
-  // get the canvas
-  const el = document.querySelector('.wrapper-gain-score img');
-  el.style.display = 'none';
-  const leaderboard = document.querySelector('.leader-board');
-  leaderboard.style.display = 'flex';
+  onPageGame ();
+
   const canvas = document.querySelector('#canvas');
-  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d'); // access to canvas
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight * .8;
 
+  // Create an instance of the game
   const game = new Game(canvas, gameOver, gainScore);
 
   // Set the player name

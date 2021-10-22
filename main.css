@@ -5,7 +5,7 @@
 {
   font-family: 'Starjedi';
   src: url('./fonts/Starjedi.woff') format('woff'),
-      url('./fonts/Starjedi.ttf') format('truetype');
+       url('./fonts/Starjedi.ttf') format('truetype');
 }
 
 @font-face {
@@ -107,6 +107,14 @@ select {
 	font: inherit;
 }
 
+p {
+  margin-bottom: 15px;
+}
+
+a {
+	text-decoration: none;
+}
+
 /* Variables for colors */
  :root {
   --dark-blue: #122b40;
@@ -126,21 +134,39 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-p {
-  margin-bottom: 15px;
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--dark-blue);
 }
 
-a {
-	text-decoration: none;
+.wrapper-home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-image: url("./images/background-small.png");
+  background-color: var(--dark-blue);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.wrapper-game {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 canvas {
   background-color: var(--dark-blue);
-  display: none; 
 }
 
 .leader-board {
-  display: none;
+  display: flex;
+  width: 100%;
   justify-content: space-around;
   padding-top: 10px;
   align-items: center;
@@ -163,7 +189,6 @@ canvas {
 .leader-board h3 {
   color: #abe1df;
   font-weight: bold;
-  
   font-size: 1.5rem;
   line-height: 1.3;
   padding: 1rem 0;
@@ -203,27 +228,6 @@ canvas {
   to {
     transform: rotateX(360deg);
   }
-}
-
-/* .hidden {
-  display: none;
-} */
-
-.container {
-  display: flex;
-  justify-content: center;
-  background-image: url("./images/background-small.png");
-  background-color: var(--dark-blue);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.wrapper-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 h1 {
@@ -291,17 +295,12 @@ h1 {
   margin-top: 20px;
 }
 
-
-footer, footer a{
-  color: rgb(221 226 229);
-  text-align: center;
-  font-size: .7rem;
-}
-
 .game-over {
   width: 70%;
   height: 50%;
-  top: 20%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   position: absolute;
   background-color: rgb(0, 161, 157, .8);
@@ -351,8 +350,12 @@ footer, footer a{
   letter-spacing: 1.2px;
 }
 
+footer, footer a{
+  color: rgb(221 226 229);
+  text-align: center;
+  font-size: .7rem;
+}
 
-  
 @media (min-width: 768px) {
   .wrapper-container {
     max-width: 728px;
