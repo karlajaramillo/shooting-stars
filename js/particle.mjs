@@ -1,3 +1,5 @@
+"use strict";
+
 class Particle {
   constructor(canvas, x, y, color) {
     this.canvas = canvas;
@@ -35,3 +37,5 @@ class Particle {
     }
   }
 }
+
+export default Particle;

@@ -1,3 +1,9 @@
+"use strict";
+
+import Player from "./player.mjs";
+import Star from "./star.mjs";
+import Particle from "./particle.mjs";
+
 class Game {
   constructor(canvas, gameOverCallback, gainScore) {
     this.canvas = canvas;
@@ -219,5 +225,6 @@ class Game {
       this.player.pointerX = this.pointerX;
     })
   }
-
 }
+
+export default Game;

@@ -1,3 +1,5 @@
+"use strict";
+
 class Player {
   constructor(canvas) {
     this.canvas = canvas;
@@ -58,3 +60,5 @@ class Player {
     return star.radius < 15 ? this.score += 100 : this.score += 50;
   }
 }
+
+export default Player;

@@ -1,3 +1,8 @@
+"use-strict";
+
+import Game from "./game.mjs";
+
+
 let namePlayer = "";
 
 // Audio elements - using Howl API for JS

@@ -1,3 +1,5 @@
+"use strict";
+
 class Star {
   constructor(canvas) {
     this.canvas = canvas;
@@ -82,3 +84,5 @@ class Star {
       if (collision) return collision;
   }
 }
+
+export default Star;
