@@ -23,6 +23,14 @@ window.onload = () => {
     buildGameScreen(namePlayer);
     startSound.play();
   });
+  document.addEventListener('keyup', (event) => {
+    if(event.code === 'Enter') {
+      renderAt(".container","");
+      buildGameScreen(namePlayer);
+      startSound.play();
+    }
+  });
+
 }
 
 function listenToResize () {
