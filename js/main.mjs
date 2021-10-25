@@ -46,6 +46,7 @@ function onPageLoad () {
   const homeTemplate = `    
     <div class="wrapper-home">
       <h1> Shooting Stars</h1>
+      <p class="entry-msg">Click on the passing stars to cathed them!</p>
       <section class="section-start">
         <div>
          <input type="text" class="name"placeholder="What's your name?">
