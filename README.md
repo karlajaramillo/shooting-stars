@@ -145,6 +145,6 @@ Definition of the different states and their transition (transition functions)
 ## Links
 
 - [Trello Link](https://trello.com/b/qJvWaLhd/shooting-stars)
-- [Slides Link](http://slides.com)
+- [Slides Link](https://docs.google.com/presentation/d/18E8h0hVl1O6pwSLUACh9s8Ngzqc8ecl_cXdPgm-Kfgs/edit#slide=id.gfa18595a95_0_47)
 - [Github repository Link](https://github.com/karlajaramillo/shooting-stars)
-- [Deployment Link](http://github.com)
+- [Deployment Link](https://karlajaramillo.github.io/shooting-stars/)
